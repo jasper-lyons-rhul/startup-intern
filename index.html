@@ -7,10 +7,10 @@
     <script src="./assets/lib.js"></script>
     <link rel="stylesheet" href="./assets/tailwind.min.css">
   </head>
-  <body>
+  <body class="font-normal">
     <header class="bg-blue text-white text-center flex flex-col justify-center h-64">
       <h1 class="text-5xl">Startup Intern</h1>
-      <p class="font-thin">RHUL's very own startup internship board.</p>
+      <p>RHUL's very own startup internship board.</p>
     </header>
     <main class="bg-grey-lightest flex flex-col items-center">
     <div class="p-8 max-w-lg items-center">
@@ -26,14 +26,14 @@
         </div>
         <div class="p-2">
           <div class="flex flex-col items-bottom md:flex-row border-black border-2 rounded">
-            <div class="p-2">
+            <div class="p-4">
               <div class="p-2">
-                <h2 class="font-normal"><a class="text-black hover:text-grey-darker" href="https://heylangu.com/">Langu</a></h2>
-                <div class="font-thin">Live online language lessons with top teachers</div>
+                <h2 class="py-1">Escaping Google!</h2>
+                <div class="py-1 font-thin">We're looking for someone to rebuild our collaborative text editor without using the Google Realtime API and that's being depreciated 😒. You'd probably need to play with Websockets, WebRTC and operational transforms! Sound interesting?</div>
               </div>
-              <div class="p-2">
-                <div class="py-1 font-semibold">Escaping Google!</div>
-                <div class="py-1">We're looking for someone to rebuild our collaborative text editor without using the Google Realtime API and that's being depreciated 😒. You'd probably need to play with Websockets, WebRTC and operational transforms! Sound interesting?</div>
+              <div class="p-2 text-right">
+                <div class="text-xl font-normal"><a class="text-black hover:text-grey-darker" href="https://heylangu.com/">Langu</a></div>
+                <div class="italic font-thin text-sm">Live online language lessons with top teachers</div>
               </div>
             </div>
             <button class="p-4 border-black border-t-2 md:border-t-0 md:border-l-2 hover:bg-orange hover:text-white group">
@@ -45,12 +45,12 @@
           <div class="flex flex-col items-bottom md:flex-row border-black border-2 rounded">
             <div class="p-2">
               <div class="p-2">
-                <h2 class="font-normal"><a class="text-black hover:text-grey-darker" href="https://www.shoesie.co/">Shoesie</a></h2>
-                <div class="font-thin">Enabling every shoe brand to offer customizable shoes</div>
+                <h2 class="py-1">Automated Image Processing</h2>
+                <div class="py-1 font-thin">We're looking for someone to look into automating our sales and oboarding process. "Sales and onboarding?!" you say? Well yes. When we onbaord a new shoe brand we need to take images of their shoes and cut them into svg layers, one layer for each section of the shoe. This is super time consuming 😞. We'd like to see if you can teach a computer to do it. If you're really into image processing and maybe a little machine learning...</div>
               </div>
-              <div class="p-2">
-                <div class="py-1 font-semibold">Automated Image Processing</div>
-                <div class="py-1">We're looking for someone to look into automating our sales and oboarding process. "Sales and onboarding?!" you say? Well yes. When we onbaord a new shoe brand we need to take images of their shoes and cut them into svg layers, one layer for each section of the shoe. This is super time consuming 😞. We'd like to see if you can teach a computer to do it. If you're really into image processing and maybe a little machine learning...</div>
+              <div class="p-2 text-right">
+                <h2 class="font-normal text-xl"><a class="text-black hover:text-grey-darker" href="https://www.shoesie.co/">Shoesie</a></h2>
+                <div class="font-thin italic text-sm">Enabling every shoe brand to offer customizable shoes</div>
               </div>
             </div>
             <button class="p-4 border-black border-t-2 md:border-t-0 md:border-l-2 hover:bg-orange hover:text-white group">
@@ -61,11 +61,13 @@
       </div>
     </section>
     </main>
-    <footer class="bg-blue text-white p-6">
-      <h2 class="p-2">Startup Intern</h2>
-      <div class="p-2">Build by <a class="text-white" href="https://mobile.twitter.com/iOvrThoughtThis">Jasper Lyons</a>.</div>
-      <div class="p-2">So many of the startups I am mentoring are looking for technical help and many of the students I'm teaching are looking for internships / work! A little jobs board (well, problems board) makes sense :).</div>
-      <div class="p-2">If you're interested in posting your job here drop me an <a class="text-white" href="mailto:jasper.lyons@rhul.ac.uk">email</a>.</div>
+    <footer class="bg-blue text-white flex flex-col items-center">
+      <div class="p-8 max-w-lg">
+        <h2 class="p-2">Startup Intern</h2>
+        <div class="p-2">Build by <a class="text-white" href="https://mobile.twitter.com/iOvrThoughtThis">Jasper Lyons</a>.</div>
+        <div class="p-2">So many of the startups I am mentoring are looking for technical help and many of the students I'm teaching are looking for internships / work! A little jobs board (well, problems board) makes sense :).</div>
+        <div class="p-2">If you're interested in posting your job here drop me an <a class="text-white" href="mailto:jasper.lyons@rhul.ac.uk">email</a>.</div>
+      </div>
     </footer>
     <ul>
       <li>Get jobs from google sheet</li>
