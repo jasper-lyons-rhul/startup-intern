@@ -5,6 +5,80 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title></title>
     <script src="./assets/lib.js"></script>
+    <script>
+      var data = {
+        jobs: []
+      };
+
+      var views = {
+        wrapper: function (className, children) {
+          if (!children.hasOwnProperty('length'))
+            children = [children];
+
+          if (typeof children === 'string') {
+            return html.div({
+              className: className,
+              text: children
+            });
+          } else {
+            return html.div({
+              className: className,
+              children: children
+            });
+          }
+        },
+        job: function (job) {
+          console.log(job);
+          return views.wrapper('p-2',
+            views.wrapper('flex flex-col items-bottom md:flex-row border-black border-2 rounded', [
+              views.wrapper('p-4', [
+                views.wrapper('p-2', [
+                  html.h2({
+                    className: 'py-1',
+                    text: job.problem_title
+                  }),
+                  html.div({
+                    className: 'py-1 font-thin',
+                    innerHTML: job.problem_description
+                  })
+                ]),
+                views.wrapper('p-2 text-right', [
+                  views.wrapper('text-xl font-normal',
+                    html.a({
+                      className: 'text-black hover:text-grey-darker',
+                      href: job.url,
+                      text: job.name
+                    })),
+                  views.wrapper('italic font-thin text-sm', job.tag_line)
+                ])
+              ]),
+              html.button({
+                className: 'p-4 border-black border-t-2 md:border-t-0 md:border-l-2 hover:bg-orange hover:text-white group',
+                text: 'Apply'
+              })
+              ]));
+        },
+        jobs: function (data) {
+          if (data.jobs.length > 0) {
+            return html.div({
+              className: 'p-6 max-w-lg',
+              children: [
+                html.div({
+                  className: 'p-2 flex flex-col items-center',
+                  children: [html.h1('Current Problems')]
+                })
+              ].concat(data.jobs.map(views.job))
+            })
+          } else {
+            return document.getElementById('jobs').children[0];
+          }
+        }
+      };
+
+      window.onload = renderJobs = makeRenderer('jobs', data, views.jobs);
+    </script>
+    <script async src="https://script.google.com/macros/s/AKfycbyx446_vqhWhLm9D2Blt3TAlqFKNfsB_sz3q3jZ6h9e-ZdPzQM/exec"></script>
+
     <link rel="stylesheet" href="./assets/tailwind.min.css">
   </head>
   <body class="font-normal">
@@ -24,33 +98,17 @@
         <div class="p-2 flex flex-col items-center">
           <h1>Current Problems</h1>
         </div>
+
         <div class="p-2">
           <div class="flex flex-col items-bottom md:flex-row border-black border-2 rounded">
             <div class="p-4">
               <div class="p-2">
-                <h2 class="py-1">Escaping Google!</h2>
-                <div class="py-1 font-thin">We're looking for someone to rebuild our collaborative text editor without using the <a href="">Google Realtime API</a> that iss being depreciated 😒 .You'd probably need to play with <a href="">Websockets</a>, <a href="">WebRTC<a> and <a href="">operational transforms</a>! Sound interesting?</div>
+                <h2 class="py-1">Nothing Has Loaded?!</h2>
+                <div class="py-1 font-thin">We're probably just waiting on the google scripts API! If this is a problem that doesn't solve it's self in ~ 200ms - 2000ms then maybe you can reach out to help! Probably won't be a whole internship though since, this is not an actual company...</div>
               </div>
               <div class="p-2 text-right">
-                <div class="text-xl font-normal"><a class="text-black hover:text-grey-darker" href="https://heylangu.com/">Langu</a></div>
-                <div class="italic font-thin text-sm">Live online language lessons with top teachers</div>
-              </div>
-            </div>
-            <button class="p-4 border-black border-t-2 md:border-t-0 md:border-l-2 hover:bg-orange hover:text-white group">
-            Apply
-          </div>
-        </div>
-
-        <div class="p-2">
-          <div class="flex flex-col items-bottom md:flex-row border-black border-2 rounded">
-            <div class="p-2">
-              <div class="p-2">
-                <h2 class="py-1">Automated Image Processing</h2>
-                <div class="py-1 font-thin">We're looking for someone to look into automating our sales and onboarding process. "Sales and onboarding?!" you say? Well yes. When we onboard a new shoe brand we need to take images of their shoes and cut them into svg layers, one layer for each section of the shoe. This is super time consuming 😞. We'd like to see if you can teach a computer to do it. If you're really into image processing and maybe a little machine learning...</div>
-              </div>
-              <div class="p-2 text-right">
-                <h2 class="font-normal text-xl"><a class="text-black hover:text-grey-darker" href="https://www.shoesie.co/">Shoesie</a></h2>
-                <div class="font-thin italic text-sm">Enabling every shoe brand to offer customizable shoes</div>
+                <h2 class="font-normal text-xl"><a class="text-black hover:text-grey-darker" href="">Jasper Lyons</a></h2>
+                <div class="font-thin italic text-sm">Ex CTO, Lecturing Software Engineering, Mentoring Startups, EIR at Ignite.</div>
               </div>
             </div>
             <button class="p-4 border-black border-t-2 md:border-t-0 md:border-l-2 hover:bg-orange hover:text-white group">
@@ -70,8 +128,6 @@
       </div>
     </footer>
     <ul>
-      <li>Get jobs from Google Sheet</li>
-      <li>render jobs from Google sheet</li>
       <li>design application process</li>
       <li>allow posting of applications to a Google sheet</li>
     </ul>
