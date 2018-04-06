@@ -313,7 +313,9 @@ function elementFactory(name, builders) {
       // A lifecycle function that can be called after the element's are
       // appended to the dom.
       el.load = function () {
-        Array.from(el.children).map(function (c) { c.load() });
+        Array.from(el.children)
+          .filter(function (c) { return c.hasOwnProperty('load'); })
+          .map(function (c) { c.load() });
         if (el.onload) el.onload();
       };
 

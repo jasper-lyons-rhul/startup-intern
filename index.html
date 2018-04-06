@@ -7,7 +7,8 @@
     <script src="./assets/lib.js"></script>
     <script>
       var data = {
-        jobs: []
+        jobs: [],
+        applyingtoProblem: null
       };
 
       var views = {
@@ -27,8 +28,35 @@
             });
           }
         },
+        apply: function (data) {
+          if (data.applyingToProblem) {
+            return views.wrapper('fixed pin flex flex-col justify-center items-center', [
+              html.div({
+                className: 'absolute pin bg-black opacity-50 z-0',
+                onclick: function () {
+                  data.applyingToProblem = null;
+                  renderJobs();
+                }
+              }),
+              views.wrapper('bg-white p-4 border-black border-2 rounded z-10 max-w-sm', [
+                html.div({
+                  innerHTML: 'So... applications aren\'t open yet but if you want to get in early, send an email to <a href="mailto:jasper.lyons@rhul.ac.uk">jasper.lyons@rhul.ac.uk</a> and well see what we can do! Send something like:'
+                }),
+                html.p([
+                  html.div({ className: 'font-bold mt-2', text: 'Subject' }),
+                  html.span('Startup Intern: problem no. ' + data.applyingToProblem.id)
+                ]),
+                html.p([
+                  html.div({ className: 'font-bold mt-2', text: 'Body' }),
+                  html.span('I am super interested in ' + data.applyingToProblem.name + '\'s ' + data.applyingToProblem.problem_title.slice(0, 10) + '...')
+                ])
+              ])
+            ]);
+          } else {
+            return html.div();
+          }
+        },
         job: function (job) {
-          console.log(job);
           return views.wrapper('p-2',
             views.wrapper('flex flex-col items-bottom md:flex-row border-black border-2 rounded', [
               views.wrapper('p-4', [
@@ -54,9 +82,14 @@
               ]),
               html.button({
                 className: 'p-4 border-black border-t-2 md:border-t-0 md:border-l-2 hover:bg-orange hover:text-white group',
-                text: 'Apply'
+                text: 'Apply',
+                onclick: function (e) {
+                  e.stopPropagation();
+                  data.applyingToProblem = job;
+                  renderJobs();
+                }
               })
-              ]));
+            ]));
         },
         jobs: function (data) {
           if (data.jobs.length > 0) {
@@ -67,7 +100,9 @@
                   className: 'p-2 flex flex-col items-center',
                   children: [html.h1('Current Problems')]
                 })
-              ].concat(data.jobs.map(views.job))
+              ]
+              .concat(data.jobs.map(views.job))
+              .concat(views.apply(data))
             })
           } else {
             return document.getElementById('jobs').children[0];
