@@ -112,7 +112,9 @@
                   children: [html.h1('Current Problems')]
                 })
               ]
-              .concat(data.jobs.map(views.job))
+              .concat(data.jobs
+                .filter(function (j) { return j.open === 1; })
+                .map(views.job))
               .concat(views.apply(data))
             })
           } else {
